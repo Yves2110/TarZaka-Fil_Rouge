@@ -12,9 +12,9 @@
             <div class="card-body">
                 <h4 class="card-title text-dark text-uppercase">Statuts des bailleurs</h4>
 
-                <a class="nav-link" href=" {{route('Locataire_Form')}} ">
+                <a class="nav-link" href=" {{route('bailleur_Form')}} ">
                     <span class="preview-icon float-md-right rounded-circle">
-                        <i class="mdi mdi-account-plus text-dark"></i>
+                        <i class="mdi mdi-account-plus text-dark fs-2"></i>
                     </span>
 
                 </a>

@@ -1,15 +1,15 @@
 @extends('layouts.home')
 @section('content')
     <div class="bande ms-5 d-flex align-items-center justify-content-center text-dark text-weight-bold">
-        <h1>Gestionnaire des Locataires</h1>
+        <h1>Gestionnaire des Maisons</h1>
     </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card bg">
-                    <div class="card-header text-dark fw-bold fs-4">{{ __('Ajout de Locataire') }}</div>
+                    <div class="card-header text-dark fw-bold fs-4">{{ __('Ajout de Maison') }}</div>
 
-                    <a class="nav-link" href=" {{ route('locataires') }} ">
+                    <a class="nav-link">
                         <span class="preview-icon float-md-right rounded-circle">
                             <i class="mdi mdi-format-list-bulleted-type fs-2 text-dark"></i>
                         </span>
@@ -17,19 +17,37 @@
                     </a>
 
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form method="POST" action=" {{route('maisons.store')}} ">
                             @csrf
 
-                            <div class="row mb-3">
-                                <label for="nom"
+                            <div class="row mb-1">
+                                <label for="modele"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect2"></label>
+
+                                        <select class="form-control" id="exampleFormControlSelect2">
+                                            <option>Modèle</option>
+                                        @foreach ($modeles as $item)
+                                            <option>{{ $item->type }}</option>
+                                            @endforeach
+                                        </select>
+
+                                      </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-1">
+                                <label for="localisation"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="nom" type="text" placeholder="Nom"
-                                        class="form-control @error('nom') is-invalid @enderror" name="nom"
-                                        value="{{ old('nom') }}" required autocomplete="nom" autofocus>
+                                    <input id="localisation" type="text" placeholder="Localisation"
+                                        class="form-control @error('localisation') is-invalid @enderror" name="localisation"
+                                        value="{{ old('localisation') }}" required autocomplete="localisation">
 
-                                    @error('nom')
+                                    @error('localisation')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -37,16 +55,16 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="prenom"
+                            <div class="row mb-1">
+                                <label for="price"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="prenom" type="prenom" placeholder="Prénom"
-                                        class="form-control @error('prenom') is-invalid @enderror" name="prenom"
-                                        value="{{ old('prenom') }}" required autocomplete="prenom">
+                                    <input id="price" type="text" placeholder="Prix"
+                                        class="form-control @error('price') is-invalid @enderror" name="price"
+                                        value="{{ old('price') }}" required autocomplete="price">
 
-                                    @error('prenom')
+                                    @error('price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -54,16 +72,17 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="email"
+
+                            <div class="row ">
+                                <label for="numero_parcelle"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email"placeholder=" Address Email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="numero_parcelle" type="text" placeholder="Numéro de la Parcelle"
+                                        class="form-control @error('numero_parcelle') is-invalid @enderror" name="numero_parcelle"
+                                        value="{{ old('numero_parcelle') }}" required autocomplete="numero_parcelle">
 
-                                    @error('email')
+                                    @error('numero_parcelle')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -71,48 +90,30 @@
                                 </div>
                             </div>
 
-
-                            <div class="row mb-3">
-                                <label for="tel"
+                            <div class="row ">
+                                <label for="bailleur"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
-
                                 <div class="col-md-6">
-                                    <input id="tel" type="tel" placeholder="Numéro"
-                                        class="form-control @error('tel') is-invalid @enderror" name="tel"
-                                        value="{{ old('tel') }}" required autocomplete="tel">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect2"></label>
 
-                                    @error('tel')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                        <select class="form-control" id="exampleFormControlSelect2">
+                                            <option>Bailleur</option>
+                                        @foreach ($bailleurs as $bailleur)
+                                            <option>{{ $bailleur->firstname }}</option>
+                                            @endforeach
+                                        </select>
+
+                                      </div>
                                 </div>
                             </div>
 
-
-                            <div class="row mb-3">
-                                <label for="cnib" class="col-md-4 col-form-label text-md-end">{{ __('') }}
-                                </label>
-
-                                <div class="col-md-6">
-                                    <input id="cnib" placeholder="N° CNIB" type="cnib"
-                                        class="form-control @error('cnib') is-invalid @enderror" name="cnib" required
-                                        autocomplete="cnib">
-
-                                    @error('cnib')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
+                            <div class="row mb-1">
                                 <label for="file" class="col-md-4 col-form-label text-md-end">{{ __('') }}
                                 </label>
                                 <div class="col-md-6 form-group">
-                                    <input type="file" name="photo" class="file-upload-default">
-                                    <div class="input-group">
+                                    <div class="input-group ">
+                                        <input type="file" name="photo" class="file-upload-default">
                                         <input type="text" class="form-control file-upload-info" disabled
                                             placeholder="Photo">
                                         <span class="input-group-append">

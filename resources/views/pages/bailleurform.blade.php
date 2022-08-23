@@ -1,15 +1,15 @@
 @extends('layouts.home')
 @section('content')
     <div class="bande ms-5 d-flex align-items-center justify-content-center text-dark text-weight-bold">
-        <h1>Gestionnaire des Locataires</h1>
+        <h1>Gestionnaire des Bailleurs</h1>
     </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card bg">
-                    <div class="card-header text-dark fw-bold fs-4">{{ __('Ajout de Locataire') }}</div>
+                    <div class="card-header text-dark fw-bold fs-4">{{ __('Ajout de Bailleur') }}</div>
 
-                    <a class="nav-link" href=" {{ route('locataires') }} ">
+                    <a class="nav-link" href=" {{ route('bailleurs') }} ">
                         <span class="preview-icon float-md-right rounded-circle">
                             <i class="mdi mdi-format-list-bulleted-type fs-2 text-dark"></i>
                         </span>
@@ -25,11 +25,11 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="nom" type="text" placeholder="Nom"
-                                        class="form-control @error('nom') is-invalid @enderror" name="nom"
-                                        value="{{ old('nom') }}" required autocomplete="nom" autofocus>
+                                    <input id="firstname" type="text" placeholder="Nom"
+                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
+                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
 
-                                    @error('nom')
+                                    @error('firstname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -38,15 +38,15 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="prenom"
+                                <label for="lastname"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="prenom" type="prenom" placeholder="Prénom"
-                                        class="form-control @error('prenom') is-invalid @enderror" name="prenom"
-                                        value="{{ old('prenom') }}" required autocomplete="prenom">
+                                    <input id="lastname" type="lastname" placeholder="Prénom"
+                                        class="form-control @error('lastname') is-invalid @enderror" name="lastname"
+                                        value="{{ old('lastname') }}" required autocomplete="lastname">
 
-                                    @error('prenom')
+                                    @error('lastname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -95,11 +95,11 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="cnib" placeholder="N° CNIB" type="cnib"
-                                        class="form-control @error('cnib') is-invalid @enderror" name="cnib" required
-                                        autocomplete="cnib">
+                                    <input id="adresse" placeholder="Adresse" type="adresse"
+                                        class="form-control @error('adresse') is-invalid @enderror" name="adresse" required
+                                        autocomplete="adresse">
 
-                                    @error('cnib')
+                                    @error('adresse')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -112,9 +112,9 @@
                                 </label>
                                 <div class="col-md-6 form-group">
                                     <input type="file" name="photo" class="file-upload-default">
-                                    <div class="input-group">
+                                    <div class="input-group col-xs-12">
                                         <input type="text" class="form-control file-upload-info" disabled
-                                            placeholder="Photo">
+                                        placeholder="Photo">
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-primary"
                                                 type="button">Importer</button>

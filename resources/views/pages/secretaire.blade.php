@@ -1,20 +1,20 @@
 @extends('layouts.home')
 @section('content')
 <div class="bande ms-5 d-flex align-items-center justify-content-center text-dark text-weight-bold">
-    <h1>Gestionnaire des Locataires</h1>
+    <h1>Gestionnaire des Bailleurs</h1>
 </div>
 
 
 
-  <div class="row corps">
+<div class="row corps">
     <div class="col-12 grid-margin">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title text-dark text-uppercase">Statuts des locataires</h4>
+                <h4 class="card-title text-dark text-uppercase">Statuts des bailleurs</h4>
 
-                <a class="nav-link" href=" {{route('Locataire_Form')}} ">
+                <a class="nav-link" href=" {{route('bailleur_Form')}} ">
                     <span class="preview-icon float-md-right rounded-circle">
-                        <i class="mdi mdi-account-plus fs-2 text-dark"></i>
+                        <i class="mdi mdi-account-plus text-dark f-2"></i>
                     </span>
 
                 </a>
@@ -30,7 +30,7 @@
                                         </label>
                                     </div>
                                 </th>
-                                <th> Nom du Locataire </th>
+                                <th> Nom du Bailleur </th>
                                 <th> Ordre </th>
                                 <th> Numéro </th>
                                 <th> N° CNIB </th>

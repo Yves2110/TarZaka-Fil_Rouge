@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('content')
     <div class="bande ms-5 d-flex align-items-center justify-content-center text-dark text-weight-bold">
-        <h1>Gestionnaire des Locataires</h1>
+        <h1>Gestionnaire des Secrétaires</h1>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -9,7 +9,7 @@
                 <div class="card bg">
                     <div class="card-header text-dark fw-bold fs-4">{{ __('Ajout de Locataire') }}</div>
 
-                    <a class="nav-link" href=" {{ route('locataires') }} ">
+                    <a class="nav-link" href=" {{ route('secretaire') }} ">
                         <span class="preview-icon float-md-right rounded-circle">
                             <i class="mdi mdi-format-list-bulleted-type fs-2 text-dark"></i>
                         </span>
@@ -111,13 +111,13 @@
                                 <label for="file" class="col-md-4 col-form-label text-md-end">{{ __('') }}
                                 </label>
                                 <div class="col-md-6 form-group">
-                                    <input type="file" name="photo" class="file-upload-default">
-                                    <div class="input-group">
+                                    <input type="file" name="img[]" class="file-upload-default">
+                                    <div class="input-group ">
                                         <input type="text" class="form-control file-upload-info" disabled
                                             placeholder="Photo">
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-primary"
-                                                type="button">Importer</button>
+                                                type="button">Upload</button>
                                         </span>
                                     </div>
                                 </div>

@@ -14,6 +14,20 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    public function store(Request $request)
+    {
+       //
+    }
+
+    public function create()
+    {
+        return view('pages.secretaireform');
+    }
+
+    public function index()
+    {
+        return view('pages.secretaire');
+    }
     /**
      * Handle an authentication attempt.
      *
@@ -33,7 +47,7 @@ class LoginController extends Controller
                     return redirect()->route('home');
                     break;
                 case 2:
-                    return 'Veuillez creer la page de la secretaire apres authentification :)';
+                    return redirect()->route('home');
                     break;
             }
         } else return Redirect::back()->with('error', 'Email ou mot de passe incorrect!');
@@ -42,11 +56,11 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-     
+
         $request->session()->invalidate();
-     
+
         $request->session()->regenerateToken();
-     
+
         return redirect()->route('auth.login');
     }
 }

@@ -11,7 +11,7 @@
 
         <ul class="navbar-nav justify-content-center ms-5 text-dark font-weight-bolder">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+                <a class="nav-link active" aria-current="page" href=" {{route('bailleurs')}} ">
                 <span class="menu-icon">
                     <i class="mdi mdi-account-key"></i>
                 </span><span> Bailleurs</span>
@@ -19,7 +19,7 @@
             </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href=" {{route('maisons.index')}} ">
                 <span class="menu-icon">
                     <i class="mdi mdi-home"></i>
                 </span><span>Maisons</span>
@@ -47,12 +47,12 @@
         <ul class="navbar-nav navbar-nav-right">
 
             <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                {{-- <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                     data-toggle="dropdown">
                     <i class="mdi mdi-bell "></i>
                     <span class="count bg-danger"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                </a> --}}
+                {{-- <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                     aria-labelledby="notificationDropdown">
                     <h6 class="p-3 mb-0">Notifications</h6>
                     <div class="dropdown-divider"></div>
@@ -93,7 +93,7 @@
                     </a>
                     <div class="dropdown-divider"></div>
                     <p class="p-3 mb-0 text-center">See all notifications</p>
-                </div>
+                </div> --}}
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Settings</p>
+                            <p class="preview-subject mb-1">Paramètre</p>
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
@@ -125,11 +125,11 @@
                             </div>
                         </div>
                         <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Log out</p>
+                            <p class="preview-subject mb-1">Déconnexion</p>
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0 text-center">Advanced settings</p>
+                    <p class="p-3 mb-0 text-center">Infos compte</p>
                 </div>
             </li>
         </ul>
