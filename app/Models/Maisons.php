@@ -13,7 +13,7 @@ class Maisons extends Model
         'prix',
         'modele',
         'numero_parcelle',
-        'bailleur_firstname',
+        'bailleur',
         'photo',
         'localisation',
     ];

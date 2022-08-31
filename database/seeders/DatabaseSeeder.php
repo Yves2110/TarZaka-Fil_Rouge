@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             SecretaireSeeder::class,
             ModeleSeeder::class,
+            MoisSeeder::class,
         ]);
     }
 }

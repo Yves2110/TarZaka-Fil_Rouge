@@ -19,7 +19,6 @@
                     <div class="card-body">
                         <form method="POST" action="">
                             @csrf
-
                             <div class="row mb-3">
                                 <label for="nom"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
@@ -107,18 +106,14 @@
                                 </div>
                             </div>
 
+
                             <div class="row mb-3">
                                 <label for="file" class="col-md-4 col-form-label text-md-end">{{ __('') }}
                                 </label>
                                 <div class="col-md-6 form-group">
-                                    <input type="file" name="photo" class="file-upload-default">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control file-upload-info" disabled
-                                            placeholder="Photo">
-                                        <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-primary"
-                                                type="button">Importer</button>
-                                        </span>
+                                    <div class="input-group col-xs-12">
+                                        <button class="bg-primary btn-primary file-upload-info "></button>
+                                        <input type="file" class="form-control file-upload-info" placeholder="Photo">
                                     </div>
                                 </div>
                                 @error('file')

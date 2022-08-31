@@ -11,13 +11,15 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title text-dark text-uppercase">Statuts des bailleurs</h4>
-
-                <a class="nav-link" href=" {{route('bailleur_Form')}} ">
+                @foreach ($users as $user)
+                @if ($user->role_id ===1)
+                <a class="nav-link" href=" {{route('bailleurs.create')}} ">
                     <span class="preview-icon float-md-right rounded-circle">
-                        <i class="mdi mdi-account-plus text-dark f-2"></i>
+                        <i class="mdi mdi-account-plus text-dark fs-2"></i>
                     </span>
-
                 </a>
+                @endif
+                @endforeach
 
                 <div class="table-responsive">
                     <table class="table text-dark">
@@ -30,16 +32,17 @@
                                         </label>
                                     </div>
                                 </th>
-                                <th> Nom du Bailleur </th>
-                                <th> Ordre </th>
-                                <th> Numéro </th>
-                                <th> N° CNIB </th>
-                                <th> Mode de Paiement </th>
-                                <th> Date de Paiement </th>
-                                <th> Status de paiment </th>
+                                <th> </th>
+                                    <th> Nom </th>
+                                    <th> Prénom </th>
+                                    <th> Email </th>
+                                    <th> Numéro </th>
+                                    <th> Status </th>
+                                    <th> Actions </th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($users as $user)
                             <tr>
                                 <td>
                                     <div class="form-check form-check-muted m-0">
@@ -49,102 +52,30 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <img src="assets/images/faces/face1.jpg" alt="image" />
-                                    <span class="pl-2">Henry Klein</span>
+                                    <img src=" {{ asset('storage/'.$user->photo)}} " alt="">
                                 </td>
-                                <td> 02312 </td>
-                                <td> $14,500 </td>
-                                <td> Dashboard </td>
-                                <td> Credit card </td>
-                                <td> 04 Dec 2019 </td>
+                                <td> {{$user->firstname}} </td>
+                                <td> {{$user->lastname}} </td>
+                                <td> {{$user->email}} </td>
+                                <td> {{$user->numero}} </td>
                                 <td>
-                                    <div class="badge badge-success">Approved</div>
+                                    {{-- <div class="badge badge-success">Editer</div> --}}
+                                    <form action="{{route('destroye',$user->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class='btn btn-success'>
+                                            Editer
+                                        </button>
+                                        <button  class='btn btn-danger'>
+                                           Supprimer
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-muted m-0">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <img src="assets/images/faces/face2.jpg" alt="image" />
-                                    <span class="pl-2">Estella Bryan</span>
-                                </td>
-                                <td> 02312 </td>
-                                <td> $14,500 </td>
-                                <td> Website </td>
-                                <td> Cash on delivered </td>
-                                <td> 04 Dec 2019 </td>
-                                <td>
-                                    <div class="badge badge-outline-warning">Pending</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-muted m-0">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <img src="assets/images/faces/face5.jpg" alt="image" />
-                                    <span class="pl-2">Lucy Abbott</span>
-                                </td>
-                                <td> 02312 </td>
-                                <td> $14,500 </td>
-                                <td> App design </td>
-                                <td> Credit card </td>
-                                <td> 04 Dec 2019 </td>
-                                <td>
-                                    <div class="badge badge-outline-danger">Rejected</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-muted m-0">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <img src="assets/images/faces/face3.jpg" alt="image" />
-                                    <span class="pl-2">Peter Gill</span>
-                                </td>
-                                <td> 02312 </td>
-                                <td> $14,500 </td>
-                                <td> Development </td>
-                                <td> Online Payment </td>
-                                <td> 04 Dec 2019 </td>
-                                <td>
-                                    <div class="badge badge-outline-success">Approved</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-muted m-0">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <img src="assets/images/faces/face4.jpg" alt="image" />
-                                    <span class="pl-2">Sallie Reyes</span>
-                                </td>
-                                <td> 02312 </td>
-                                <td> $14,500 </td>
-                                <td> Website </td>
-                                <td> Credit card </td>
-                                <td> 04 Dec 2019 </td>
-                                <td>
-                                    <div class="badge badge-outline-success">Approved</div>
-                                </td>
-                            </tr>
+                            @empty
+                            <h1 class="text-dark">Aucun</h1>
+                            @endforelse
+
                         </tbody>
                     </table>
                 </div>

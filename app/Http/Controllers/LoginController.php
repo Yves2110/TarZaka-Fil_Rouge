@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
@@ -16,7 +18,23 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-       //
+        request()->validate([
+            'email' => 'required|email|unique:users'
+        ]);
+
+       User::create([
+            "firstname" =>$request->firstname,
+            "lastname" =>$request->lastname,
+            "role_id" =>'2',
+            "email" =>$request->email,
+            "numero" =>$request->numero,
+            "photo" =>$request->photo,
+            "password" =>Hash::make($request->password),
+
+        ]);
+
+
+        return back()->with('message', 'Enregistrement effectué avec succès!');
     }
 
     public function create()
@@ -24,10 +42,16 @@ class LoginController extends Controller
         return view('pages.secretaireform');
     }
 
+    public function destroy($id){
+        $users=User::find($id);
+        $users->delete();
+        return back()->with('message', 'Suppression éffectué avec succès');
+    }
+
     public function index()
     {
-        return view('pages.secretaire');
-    }
+        $users = User::all();
+        return view('pages.secretaire', compact('users'));    }
     /**
      * Handle an authentication attempt.
      *

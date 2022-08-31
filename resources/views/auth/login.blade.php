@@ -41,7 +41,9 @@
                     <div class="card-body">
                         <div  class="text-center text-white">
                             @if (Session::get('error'))
+                            <div class="alert alert-danger fs-2">
                                 {{Session::get('error')}}
+                            </div>
                             @endif
                         </div>
                         <form method="POST" action="{{ route('login') }}">

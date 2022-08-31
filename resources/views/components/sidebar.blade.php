@@ -1,56 +1,75 @@
 <style>
-      @font-face {
+    @font-face {
         src: url('/../font/GRAM 01.ttf');
-        font-family: "GRAM 01";}
-.log{
-     font-family: "GRAM 01";
-     font-size: 3em !important;
-}
-.sidebar,.sidebar-brand-wrapper{
-    background-color: #fcb46b!important;
-}
-.navbar,.content-wrapper,.dropdown-menu,.bg{
-    background-image: linear-gradient(to right, #fcb46b, #fdc387, #fed1a3, #fddfc0, #fcedde) !important;
-}
-.menu-title: hover{
-    color: white !important;
-}
-.menu-arrow,.mdi-dots-vertical{
-    color: white !important;
-}
-.mdi-bell{
-    color: #d36d08;
-}
-.trait{
-    border: 6px solid #ffffff;
-    border-radius: 2px;
-    z-index: 1550;
-}
-.mdi-menu-down{
-    color: #000000 !important;
-}
-.card{
-    background-color: #f7f1f1 !important;
-}
-.bande{
-    background-color: #d36d08 !important;
-    height: 5em;
-    width: 90%;
-    border-radius: 4px !important;
-    margin-left: 5em !important;
-}
-input,select{
-        height:3em !important;
-    background-color:rgb(235, 226, 226) !important;
-    border: #000000 1px solid !important;
+        font-family: "GRAM 01";
     }
-    .sur:hover{
-        color:#ffffff !important;
+
+    .log {
+        font-family: "GRAM 01";
+        font-size: 3em !important;
     }
- </style>
+
+    .sidebar,
+    .sidebar-brand-wrapper {
+        background-color: #fcb46b !important;
+    }
+
+    .navbar,
+    .content-wrapper,
+    .dropdown-menu,
+    .bg {
+        background-image: linear-gradient(to right, #fcb46b, #fdc387, #fed1a3, #fddfc0, #fcedde) !important;
+    }
+
+    .menu-title: hover {
+        color: white !important;
+    }
+
+    .menu-arrow,
+    .mdi-dots-vertical {
+        color: white !important;
+    }
+
+    .mdi-bell {
+        color: #d36d08;
+    }
+
+    .trait {
+        border: 6px solid #ffffff;
+        border-radius: 2px;
+        z-index: 1550;
+    }
+
+    .mdi-menu-down {
+        color: #000000 !important;
+    }
+
+    .card {
+        background-color: #f7f1f1 !important;
+    }
+
+    .bande {
+        background-color: #d36d08 !important;
+        height: 5em;
+        width: 90%;
+        border-radius: 4px !important;
+        margin-left: 5em !important;
+    }
+
+    input,
+    select {
+        height: 3em !important;
+        background-color: rgb(235, 226, 226) !important;
+        border: #000000 1px solid !important;
+    }
+
+    .sur:hover {
+        color: #ffffff !important;
+    }
+</style>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo text-bold text-light log" href=" {{('/')}} ">Tar'Zaka</a>
+        <a class="sidebar-brand brand-logo text-bold text-light log" href=" {{ '/' }} ">Tar'Zaka</a>
         {{-- <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
                 alt="logo" /></a> --}}
     </div>
@@ -63,7 +82,12 @@ input,select{
                     </div>
                     <div class="profile-name text-dark">
                         <h5 class=" font-weight-normal">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h5>
-                        <span class="ms-4">DIRECTEUR</span>
+                            @if (Auth::user()->role_id ===1)
+                            <span class="ms-4">DIRECTEUR</span>
+                            @else
+                            <span class="ms-4">SECRETAIRE</span>
+                            @endif
+
                     </div>
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -106,22 +130,26 @@ input,select{
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
+                   @if (Auth::user()-> role_id ===1)
+                   <li class="nav-item">
+                       <a class="nav-link" href=" {{ route('secretaireform') }} ">
+                           <span class="menu-icon">
+                               <i class="mdi mdi-account-multiple-plus "></i>
+                           </span>
+                           <span class="menu-title text-light">Ajouté</span>
+                       </a>
+                   </li>
+                   @endif
+
+
                     <li class="nav-item">
-                         <a class="nav-link" href=" {{route('secretaireform')}} ">
-                            <span class="menu-icon">
-                                <i class="mdi mdi-account-multiple-plus "></i>
-                            </span>
-                            <span class="menu-title text-light">Ajouté</span>
-                        </a>
-                        </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href=" {{route('secretaire')}} ">
+                        <a class="nav-link" href=" {{ route('secretaire') }} ">
                             <span class="menu-icon">
                                 <i class="mdi mdi-file-document-box "></i>
                             </span>
                             <span class="menu-title text-light">Liste</span>
                         </a>
-                        </li>
+                    </li>
 
                 </ul>
             </div>
@@ -146,28 +174,26 @@ input,select{
                         </a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link" href="pages/samples/error-500.html">
+                        <a class="nav-link" href="pages/samples/error-500.html">
                             <span class="menu-icon">
                                 <i class="mdi mdi-calendar-clock"></i>
                             </span>
                             <span class="menu-title text-light">Historique</span>
 
                         </a>
-                        </li>
+                    </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link btn-danger text-light"
-                href=" {{route('logout')}}  ">
+            <a class="nav-link btn-danger text-light" href=" {{ route('logout') }}  ">
                 <span class="menu-icon">
                     <i class="mdi mdi-logout "></i>
                 </span>
                 <span class="menu-title">Déconnexion</span>
             </a>
         </li>
-        {{-- <img src=" {{ asset('assets/images/TARZAKA.png') }}  " alt="" class="img-responsive img-fluid">  --}}
+        {{-- <img src=" {{ asset('assets/images/TARZAKA.png') }}  " alt="" class="img-responsive img-fluid"> --}}
     </ul>
 </nav>
 <div class="trait"></div>
-

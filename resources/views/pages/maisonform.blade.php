@@ -13,7 +13,6 @@
                         <span class="preview-icon float-md-right rounded-circle">
                             <i class="mdi mdi-format-list-bulleted-type fs-2 text-dark"></i>
                         </span>
-
                     </a>
 
                     <div class="card-body">
@@ -21,13 +20,13 @@
                             @csrf
 
                             <div class="row mb-1">
-                                <label for="modele"
+                                <label for="modele_id"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect2"></label>
 
-                                        <select class="form-control" id="exampleFormControlSelect2">
+                                        <select class="form-control" id="exampleFormControlSelect2" value="{{ old('modele_id') }}" name="modele_id" required>
                                             <option>Modèle</option>
                                         @foreach ($modeles as $item)
                                             <option>{{ $item->type }}</option>
@@ -56,15 +55,15 @@
                             </div>
 
                             <div class="row mb-1">
-                                <label for="price"
+                                <label for="prix"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="price" type="text" placeholder="Prix"
-                                        class="form-control @error('price') is-invalid @enderror" name="price"
-                                        value="{{ old('price') }}" required autocomplete="price">
+                                    <input id="prix" type="text" placeholder="Prix"
+                                        class="form-control @error('prix') is-invalid @enderror" name="prix"
+                                        value="{{ old('prix') }}" required autocomplete="prix">
 
-                                    @error('price')
+                                    @error('prix')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -91,16 +90,16 @@
                             </div>
 
                             <div class="row ">
-                                <label for="bailleur"
+                                <label for="bailleur_id"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect2"></label>
 
-                                        <select class="form-control" id="exampleFormControlSelect2">
+                                        <select class="form-control" id="exampleFormControlSelect2" value="{{ old('bailleur_id') }}" name="bailleur_id" required>
                                             <option>Bailleur</option>
                                         @foreach ($bailleurs as $bailleur)
-                                            <option>{{ $bailleur->firstname }}</option>
+                                            <option>{{ $bailleur->firstname }}{{ $bailleur->lastname }}</option>
                                             @endforeach
                                         </select>
 
@@ -108,21 +107,17 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-1">
-                                <label for="file" class="col-md-4 col-form-label text-md-end">{{ __('') }}
+
+                            <div class="row mb-3">
+                                <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('') }}
                                 </label>
                                 <div class="col-md-6 form-group">
-                                    <div class="input-group ">
-                                        <input type="file" name="photo" class="file-upload-default">
-                                        <input type="text" class="form-control file-upload-info" disabled
-                                            placeholder="Photo">
-                                        <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-primary"
-                                                type="button">Importer</button>
-                                        </span>
+                                    <div class="input-group col-xs-12">
+                                        <button class="bg-primary btn-primary file-upload-info "></button>
+                                        <input type="file" name="photo" class="form-control file-upload-info" placeholder="Photo">
                                     </div>
                                 </div>
-                                @error('file')
+                                @error('photo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

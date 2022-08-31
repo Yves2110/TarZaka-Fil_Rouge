@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bailleurs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class BailleurController extends Controller
 {
@@ -14,7 +15,8 @@ class BailleurController extends Controller
      */
     public function index()
     {
-        return view('pages.bailleurs');
+        $bailleurs=Bailleurs::all();
+        return view('pages.bailleurs', ['bailleurs' => $bailleurs]);
     }
 
     /**
@@ -36,7 +38,25 @@ class BailleurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate( [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'bail|required|string|max:255',
+            'adresse' => 'bail|required|',
+            'numero' => 'bail|required|string|max:255',
+            'photo' => 'bail|required|image|max:1024',
+        ]);
+
+      Bailleurs::create([
+            "firstname" =>$request->firstname,
+            "lastname" =>$request->lastname,
+            "adresse" =>$request->adresse,
+            "email" =>$request->email,
+            "numero" =>$request->numero,
+            "photo" =>$request->photo->store('/images'),
+
+        ]);
+
+         return back()->with('message', 'Enregistrement effectué avec succès!');
     }
 
     /**
@@ -79,8 +99,10 @@ class BailleurController extends Controller
      * @param  \App\Models\Bailleurs  $bailleurs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bailleurs $bailleurs)
+    public function destroy($id)
     {
-        //
+        $bailleurs=Bailleurs::find($id);
+        $bailleurs->delete();
+        return back()->with('message', 'Suppression éffectué avec succès');
     }
 }

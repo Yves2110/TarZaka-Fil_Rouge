@@ -11,14 +11,13 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title text-dark text-uppercase">Statuts des locataires</h4>
-
-                <a class="nav-link" href=" {{route('Locataire_Form')}} ">
-                    <span class="preview-icon float-md-right rounded-circle">
-                        <i class="mdi mdi-account-plus fs-2 text-dark"></i>
-                    </span>
-
-                </a>
-
+@if (Auth::user()-> role_id ===1)
+<a class="nav-link" href=" {{route('Locataire_Form')}} ">
+    <span class="preview-icon float-md-right rounded-circle">
+        <i class="mdi mdi-account-plus fs-2 text-dark"></i>
+    </span>
+</a>
+@endif
                 <div class="table-responsive">
                     <table class="table text-dark">
                         <thead class="text-dark text-weight-bold">

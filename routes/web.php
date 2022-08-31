@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BailleurController;
+use App\Http\Controllers\FactureController;
 use App\Http\Controllers\LocataireController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MaisonController;
@@ -18,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('Login',[LoginController::class,'loginView'])->name('auth.login');
 Route::post('login',[LoginController::class,'authenticate'])->name('login');
+Route::post('store',[LoginController::class,'store'])->name('store');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');
 Route::get('secretaire',[LoginController::class,'index'])->name('secretaire');
 Route::get('AjoutSecretaire',[LoginController::class,'create'])->name('secretaireform');
+Route::post('destroy',[LoginController::class,'destroye'])->name('destroye');
 
 //route pour les locataires
 
@@ -32,9 +35,7 @@ Route::get('/', function () {
 });
 
 //route page d'acceuil
-Route::get('/home', function () {
-    return view('pages.maisons');
-})->name('home');
+Route::get('/home', [MaisonController::class, "index"])->name('home');
 
 //route pour les maisons
 Route::resource("maisons", MaisonController::class);
@@ -42,8 +43,13 @@ Route::resource("maisons", MaisonController::class);
 
 //route pour les bailleurs
 
-Route::get('bailleurs',[BailleurController::class,'index'])->name('bailleurs');
+// Route::get('bailleurs',[BailleurController::class,'index'])->name('bailleurs');
 Route::get('Ajoutbailleurs',[BailleurController::class,'create'])->name('bailleur_Form');
+// Route::post('Ajoutbailleurs',[BailleurController::class,'store'])->name('store');
+Route::resource("bailleurs", BailleurController::class);
 
 
-//route pour route les secrétaires
+
+//route pour route les factures
+
+Route::get('factures',[FactureController::class,'index'])->name('factures');
