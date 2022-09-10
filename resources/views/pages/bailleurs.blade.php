@@ -4,8 +4,6 @@
         <h1>Gestionnaire des Bailleurs</h1>
     </div>
 
-
-
     <div class="row corps">
         <div class="col-12 grid-margin">
             <div class="card">
@@ -19,7 +17,6 @@
                             </span>
                         </a>
                     @endif
-
 
 
                     <div class="table-responsive">
@@ -61,10 +58,10 @@
                                         <td> {{$bailleur->email}} </td>
                                         <td> {{$bailleur->adresse}} </td>
                                         <td>
-                                            <div class="badge badge-success">Editer</div>
                                             <form action="{{route('bailleurs.destroy',$bailleur->id)}}" method="post">
                                                 @csrf
                                                 @method('delete')
+                                                <div class="badge badge-success">Editer</div>
                                                 <button  class='btn btn-danger'>
                                                    Supprimer
                                                 </button>
@@ -73,9 +70,10 @@
                                     </tr>
                                 @empty
                                     <h1 class="text-dark">Aucun</h1>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                            {{$bailleurs->links()}}
                     </div>
                 </div>
             </div>

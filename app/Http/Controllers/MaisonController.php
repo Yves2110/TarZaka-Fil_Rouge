@@ -16,7 +16,7 @@ class MaisonController extends Controller
      */
     public function index()
     {
-        $maisons=Maisons::all();
+        $maisons = Maisons::paginate(2);
         return view('pages.maisons',  compact('maisons'));
     }
 
@@ -28,8 +28,8 @@ class MaisonController extends Controller
     public function create()
     {
         $modeles = Modele::all();
-        $bailleurs=Bailleurs::all();
-        return view('pages.maisonform', compact('modeles','bailleurs'));
+        $bailleurs = Bailleurs::all();
+        return view('pages.maisonform', compact('modeles', 'bailleurs'));
     }
 
     /**
@@ -40,26 +40,26 @@ class MaisonController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate( [
-            'modele' => 'required|string|max:255',
+        $request->validate([
+            'modele_id' => 'required|string|max:255',
             'prix' => 'bail|required|string|max:255',
             'numero_parcelle' => 'bail|required|string|max:255',
-            'bailleur' => 'bail|required|string|max:255',
+            'bailleur_id' => 'bail|required|string|max:255',
             'localisation' => 'bail|required|string|max:255',
             'photo' => 'bail|required|image|max:2024',
         ]);
 
-      $maisons=Maisons::create([
-            "bailleur_id" =>$request->bailleur_id,
-            "modele_id" =>$request->modele_id,
-            "prix" =>$request->prix,
-            "localisation" =>$request->localisation,
-            "numero_parcelle" =>$request->numero_parcelle,
-            "photo" =>$request->photo->store('/images'),
+        Maisons::create([
+            "bailleur_id" => $request->bailleur_id,
+            "modele_id" => $request->modele_id,
+            "prix" => $request->prix,
+            "localisation" => $request->localisation,
+            "numero_parcelle" => $request->numero_parcelle,
+            "photo" => $request->photo->store('/images'),
 
         ]);
-dd($maisons);
-         return back()->with('message', 'Enregistrement effectué avec succès!');
+
+        return back()->with('message', 'Enregistrement effectué avec succès!');
     }
 
     /**
@@ -102,8 +102,10 @@ dd($maisons);
      * @param  \App\Models\Maisons  $maisons
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Maisons $maisons)
+    public function destroy($id)
     {
-        //
+        $maisons=Maisons::find($id);
+        $maisons->delete();
+        return back()->with('message', 'Suppression éffectué avec succès');
     }
 }

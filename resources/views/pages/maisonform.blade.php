@@ -9,31 +9,38 @@
                 <div class="card bg">
                     <div class="card-header text-dark fw-bold fs-4">{{ __('Ajout de Maison') }}</div>
 
-                    <a class="nav-link">
+                    <a class="nav-link" href=" {{route('maisons.index')}} ">
                         <span class="preview-icon float-md-right rounded-circle">
                             <i class="mdi mdi-format-list-bulleted-type fs-2 text-dark"></i>
                         </span>
                     </a>
 
-                    <div class="card-body">
-                        <form method="POST" action=" {{route('maisons.store')}} ">
-                            @csrf
+                    <center>
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
+                    </center>
 
+                    <div class="card-body">
+                        <form method="POST" action=" {{ route('maisons.store') }} " enctype="multipart/form-data">
+                            @csrf
                             <div class="row mb-1">
                                 <label for="modele_id"
                                     class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect2"></label>
-
-                                        <select class="form-control" id="exampleFormControlSelect2" value="{{ old('modele_id') }}" name="modele_id" required>
+                                        <select class="form-control" id="exampleFormControlSelect2"
+                                            name="modele_id" required>
                                             <option>Modèle</option>
-                                        @foreach ($modeles as $item)
-                                            <option>{{ $item->type }}</option>
+                                            @foreach ($modeles as $item)
+                                                <option value="{{ $item->id }}">{{ $item->type }}</option>
                                             @endforeach
                                         </select>
 
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -78,8 +85,9 @@
 
                                 <div class="col-md-6">
                                     <input id="numero_parcelle" type="text" placeholder="Numéro de la Parcelle"
-                                        class="form-control @error('numero_parcelle') is-invalid @enderror" name="numero_parcelle"
-                                        value="{{ old('numero_parcelle') }}" required autocomplete="numero_parcelle">
+                                        class="form-control @error('numero_parcelle') is-invalid @enderror"
+                                        name="numero_parcelle" value="{{ old('numero_parcelle') }}" required
+                                        autocomplete="numero_parcelle">
 
                                     @error('numero_parcelle')
                                         <span class="invalid-feedback" role="alert">
@@ -96,14 +104,15 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect2"></label>
 
-                                        <select class="form-control" id="exampleFormControlSelect2" value="{{ old('bailleur_id') }}" name="bailleur_id" required>
+                                        <select class="form-control" id="exampleFormControlSelect2"
+                                            name="bailleur_id" required>
                                             <option>Bailleur</option>
-                                        @foreach ($bailleurs as $bailleur)
-                                            <option>{{ $bailleur->firstname }}{{ $bailleur->lastname }}</option>
+                                            @foreach ($bailleurs as $bailleur)
+                                                <option value="{{ $bailleur->id }}">{{ $bailleur->firstname }}{{ $bailleur->lastname }}</option>
                                             @endforeach
                                         </select>
 
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -114,7 +123,8 @@
                                 <div class="col-md-6 form-group">
                                     <div class="input-group col-xs-12">
                                         <button class="bg-primary btn-primary file-upload-info "></button>
-                                        <input type="file" name="photo" class="form-control file-upload-info" placeholder="Photo">
+                                        <input type="file" name="photo" class="form-control file-upload-info"
+                                            placeholder="Photo">
                                     </div>
                                 </div>
                                 @error('photo')

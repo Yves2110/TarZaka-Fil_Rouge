@@ -9,4 +9,9 @@ class Modele extends Model
 {
     use HasFactory;
     protected $fillable= ['type'];
+
+    public function maison()
+    {
+        return $this->hasOne(Maisons::class);
+    }
 }

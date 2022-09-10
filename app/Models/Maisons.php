@@ -10,11 +10,21 @@ class Maisons extends Model
     use HasFactory;
 
     protected $fillable = [
-        'prix',
-        'modele',
-        'numero_parcelle',
-        'bailleur',
-        'photo',
+        'modele_id',
         'localisation',
+        'prix',
+        'numero_parcelle',
+        'bailleur_id',
+        'photo',
     ];
+
+    public function bailleur()
+    {
+        return $this->belongsTo(Bailleurs::class);
+    }
+
+    public function modele()
+    {
+        return $this->belongsTo(Modele::class);
+    }
 }

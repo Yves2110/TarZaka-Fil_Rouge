@@ -37,7 +37,6 @@
                                     <th> Prénom </th>
                                     <th> Email </th>
                                     <th> Numéro </th>
-                                    <th> Status </th>
                                     <th> Actions </th>
                             </tr>
                         </thead>

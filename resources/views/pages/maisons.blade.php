@@ -40,13 +40,19 @@
         </center>
 
         @forelse ($maisons as $maison)
-            <div class="card" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <div class="card d-flex" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <a href="#">
-                    <img src=" {{ asset('assets/images/TARZAKA.png') }} " alt="Avatar" style="width:100%">
+                    <img src=" {{ asset('storage/' . $maison->photo) }} " alt="" style="width:100%">
                 </a>
                 <div class="container">
-                    <h4><b> {{ $maison->modele_id }} </b></h4>
-                    <p> {{ $maison->prix }} </p>
+                    <h4><b> {{ $maison->modele->type }} </b></h4>
+                    <h4><b> {{ $maison->bailleur->firstname }} {{ $maison->bailleur->lastname }} </b></h4>
+                    <h4><b>
+                            <p> {{ $maison->prix }} </p>
+                        </b></h4>
+                    <h4><b>
+                            <p class="badge badge-success"> Occupé par:   </p>
+                        </b></h4>
                 </div>
             </div>
     </div>
@@ -60,8 +66,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body bg-gradient-light">
-                    <img src=" {{ asset('assets/images/TARZAKA.png') }} " class="img-responsive col-md-3" alt="Avatar"
-                        style="width:100%">
+                    <img src=" {{ asset('storage/' . $maison->photo) }} " alt="" style="width:100%"
+                        class="img-responsive col-md-3">
+                    <form action="{{ route('bailleurs.destroy', $maison->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <div class="badge badge-success">Editer</div>
+                        <button class='btn btn-danger'>
+                            Supprimer
+                        </button>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -69,6 +83,7 @@
             </div>
         </div>
     </div>
+    {{$maisons->links()}}
 @empty
     <center>
         <h1 classe="text-dark">Aucun</h1>

@@ -17,4 +17,9 @@ class Bailleurs extends Model
         'photo',
         'numero',
     ];
+
+    public function maisons()
+    {
+        return $this->hasMany(Maisons::class);
+    }
 }

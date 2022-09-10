@@ -15,7 +15,8 @@ class BailleurController extends Controller
      */
     public function index()
     {
-        $bailleurs=Bailleurs::all();
+        $bailleurs=Bailleurs::paginate(10);
+
         return view('pages.bailleurs', ['bailleurs' => $bailleurs]);
     }
 

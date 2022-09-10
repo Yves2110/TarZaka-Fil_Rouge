@@ -39,29 +39,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($locataires as $locataire )
                                 <tr>
                                     <td>
-                                        <img src=" {{ asset('storage/'.$locataire->photo)}} " alt="">
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
                                     </td>
                                     <td>
                                         <img src="assets/images/faces/face1.jpg" alt="image" />
                                         <span class="pl-2">Henry Klein</span>
                                     </td>
-                                    <td> {{$locataire->firstname}}  </td>
-                                    <td> {{$locataire->firstname}} </td>
-                                    <td> {{$locataire->firstname}} </td>
-                                    <td> {{$locataire->firstname}} </td>
-                                    <td> {{$locataire->firstname}} </td>
+                                    <td> 02312 </td>
+                                    <td> $14,500 </td>
+                                    <td> Dashboard </td>
+                                    <td> Credit card </td>
+                                    <td> 04 Dec 2019 </td>
                                     <td>
-                                        <div class="badge badge-success">A jour</div>
-                                        <div class="badge badge-warning">Pas à jour</div>
+                                        <form action="{{route('bailleurs.destroy',$bailleur->id)}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="badge badge-success">payé</button>
+                                        </form>
                                     </td>
                                 </tr>
-
-                                @empty
-                                <h1 class="text-dark">Aucun</h1>
-                                @endforelse
 
                             </tbody>
                         </table>

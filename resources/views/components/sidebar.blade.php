@@ -82,11 +82,11 @@
                     </div>
                     <div class="profile-name text-dark">
                         <h5 class=" font-weight-normal">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h5>
-                            @if (Auth::user()->role_id ===1)
+                        @if (Auth::user()->role_id === 1)
                             <span class="ms-4">DIRECTEUR</span>
-                            @else
+                        @else
                             <span class="ms-4">SECRETAIRE</span>
-                            @endif
+                        @endif
 
                     </div>
                 </div>
@@ -104,16 +104,19 @@
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item preview-item">
+
+
+                    <a href="{{ route('forget.password.get') }}" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
                                 <i class="mdi mdi-onepassword  text-info"></i>
                             </div>
                         </div>
-                        <div class="preview-item-content text-light">
+                        <div class="preview-item-content">
                             <p class="preview-subject ellipsis mb-1 text-small">Changer de mot de passe</p>
                         </div>
                     </a>
+
                     <div class="dropdown-divider"></div>
 
                 </div>
@@ -130,16 +133,16 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                   @if (Auth::user()-> role_id ===1)
-                   <li class="nav-item">
-                       <a class="nav-link" href=" {{ route('secretaireform') }} ">
-                           <span class="menu-icon">
-                               <i class="mdi mdi-account-multiple-plus "></i>
-                           </span>
-                           <span class="menu-title text-light">Ajouté</span>
-                       </a>
-                   </li>
-                   @endif
+                    @if (Auth::user()->role_id === 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('secretaireform') }} ">
+                                <span class="menu-icon">
+                                    <i class="mdi mdi-account-multiple-plus "></i>
+                                </span>
+                                <span class="menu-title text-light">Ajouté</span>
+                            </a>
+                        </li>
+                    @endif
 
 
                     <li class="nav-item">
