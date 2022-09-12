@@ -10,3 +10,4 @@ class Roles extends Model
     use HasFactory;
     protected $fillable= ['label'];
 }
+

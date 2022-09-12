@@ -15,6 +15,14 @@
                         </span>
                     </a>
 
+                    <center>
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
+                    </center>
+
                     <div class="card-body">
                         <form method="POST" action=" {{route('Locataire_store')}} " enctype="multipart/form-data">
                             @csrf

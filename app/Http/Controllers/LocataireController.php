@@ -42,8 +42,9 @@ class LocataireController extends Controller
             'lastname' => 'bail|required|string|max:255',
             'email' => 'bail|required|',
             'numero' => 'bail|required|string|max:255',
+            'cnib' => 'bail|required|string|max:255',
             'maison_id' => 'bail|required|string|max:255',
-            'photo' => 'bail|required|image|max:1024',
+            'photo' => 'bail|required|image|max:2024',
         ]);
 
       Locataires::create([
@@ -51,6 +52,7 @@ class LocataireController extends Controller
             "lastname" =>$request->lastname,
             "adresse" =>$request->adresse,
             "email" =>$request->email,
+            "cnib" =>$request->cnib,
             "numero" =>$request->numero,
             "maison_id" =>$request->maison_id,
             "photo" =>$request->photo->store('/images'),

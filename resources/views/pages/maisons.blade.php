@@ -40,7 +40,7 @@
         </center>
 
         @forelse ($maisons as $maison)
-            <div class="card d-flex" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <div class="card d-flex full-width col-6 my-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <a href="#">
                     <img src=" {{ asset('storage/' . $maison->photo) }} " alt="" style="width:100%">
                 </a>
@@ -48,14 +48,20 @@
                     <h4><b> {{ $maison->modele->type }} </b></h4>
                     <h4><b> {{ $maison->bailleur->firstname }} {{ $maison->bailleur->lastname }} </b></h4>
                     <h4><b>
-                            <p> {{ $maison->prix }} </p>
+                            <p> {{ $maison->prix }} Fcfa</p>
                         </b></h4>
                     <h4><b>
-                            <p class="badge badge-success"> Occupé par:   </p>
+                            {{-- <p class="badge badge-success"> Occupé par: {{$locataire->house->numero_parcelle}}</p> --}}
                         </b></h4>
                 </div>
             </div>
+            @empty
+            <center>
+                <h1 classe="text-dark">Aucun</h1>
+            </center>
+            @endforelse
     </div>
+    {{ $maisons->links() }}
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -83,10 +89,4 @@
             </div>
         </div>
     </div>
-    {{$maisons->links()}}
-@empty
-    <center>
-        <h1 classe="text-dark">Aucun</h1>
-    </center>
-    @endforelse
 @endsection

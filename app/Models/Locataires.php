@@ -17,4 +17,8 @@ class Locataires extends Model
         'numero',
         'email',
     ];
+    public function house()
+    {
+        return $this->belongsTo(Maisons::class, 'maison_id');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\FactureController;
 use App\Http\Controllers\LocataireController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MaisonController;
+use App\Http\Controllers\PaiementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('Login', [LoginController::class, 'loginView'])->name('auth.login');
 Route::post('login', [LoginController::class, 'authenticate'])->name('login');
-Route::post('store', [LoginController::class, 'store'])->name('store');
+Route::post('Secrestore', [LoginController::class, 'store'])->name('Secrestore');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('secretaire', [LoginController::class, 'index'])->name('secretaire');
 Route::get('AjoutSecretaire', [LoginController::class, 'create'])->name('secretaireform');
@@ -59,7 +60,8 @@ Route::resource("bailleurs", BailleurController::class);
 
 //route pour route les factures
 
-Route::get('factures', [FactureController::class, 'index'])->name('factures');
+// Route::get('factures/{id} ', [FactureController::class, 'edit'])->name('factures');
+Route::resource('factures',PaiementController::class);
 
 //route pour la reinitialized
 
@@ -70,3 +72,11 @@ Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPa
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+//route pour les paiements
+
+Route::get('Paiements', [PaiementController::class, 'create'])->name('Paiements');
+Route::post('store', [PaiementController::class, 'store'])->name('Money');
+Route::get('index', [PaiementController::class, 'index'])->name('ListesPaiements');
+
+

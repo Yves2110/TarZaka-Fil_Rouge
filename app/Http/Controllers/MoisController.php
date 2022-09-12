@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Factures;
-use App\Models\Paiements;
+use App\Models\Mois;
 use Illuminate\Http\Request;
 
-class FactureController extends Controller
+class MoisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class FactureController extends Controller
      */
     public function index()
     {
-       //
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class FactureController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Factures  $factures
+     * @param  \App\Models\Mois  $mois
      * @return \Illuminate\Http\Response
      */
-    public function show(Factures $factures)
+    public function show(Mois $mois)
     {
         //
     }
@@ -53,10 +52,10 @@ class FactureController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Factures  $factures
+     * @param  \App\Models\Mois  $mois
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Mois $mois)
     {
         //
     }
@@ -65,10 +64,10 @@ class FactureController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Factures  $factures
+     * @param  \App\Models\Mois  $mois
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Factures $factures)
+    public function update(Request $request, Mois $mois)
     {
         //
     }
@@ -76,10 +75,10 @@ class FactureController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Factures  $factures
+     * @param  \App\Models\Mois  $mois
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Factures $factures)
+    public function destroy(Mois $mois)
     {
         //
     }

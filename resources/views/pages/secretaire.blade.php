@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('content')
 <div class="bande ms-5 d-flex align-items-center justify-content-center text-dark text-weight-bold">
-    <h1>Gestionnaire des Bailleurs</h1>
+    <h1>Gestionnaire des Secrétaires</h1>
 </div>
 
 
@@ -10,7 +10,7 @@
     <div class="col-12 grid-margin">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title text-dark text-uppercase">Statuts des bailleurs</h4>
+                <h4 class="card-title text-dark text-uppercase">Liste des Secrétaires</h4>
                 @foreach ($users as $user)
                 @if ($user->role_id ===1)
                 <a class="nav-link" href=" {{route('bailleurs.create')}} ">

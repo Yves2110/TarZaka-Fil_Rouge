@@ -1,72 +1,109 @@
 @extends('layouts.home')
 @section('content')
     <div class="bande ms-5 d-flex align-items-center justify-content-center text-dark text-weight-bold">
-        <h1>Gestionnaire des Locataires</h1>
+        <h1>Gestionnaire de paiement</h1>
     </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card bg">
+                    <div class="card-header text-dark fw-bold fs-4">{{ __('Formulaire de paiement') }}</div>
 
+                    <a class="nav-link" href=" {{route('ListesPaiements')}} ">
+                        <span class="preview-icon float-md-right rounded-circle">
+                            <i class="mdi mdi-format-list-bulleted-type fs-2 text-dark"></i>
+                        </span>
+                    </a>
 
+                    <center>
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
+                    </center>
 
-    <div class="row corps">
-        <div class="col-12 grid-margin">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title text-dark text-uppercase">Statuts des locataires</h4>
-                    @if (Auth::user()->role_id === 1)
-                        <a class="nav-link" href=" {{ route('Locataire_Form') }} ">
-                            <span class="preview-icon float-md-right rounded-circle">
-                                <i class="mdi mdi-account-plus fs-2 text-dark"></i>
-                            </span>
-                        </a>
-                    @endif
-                    <div class="table-responsive">
-                        <table class="table text-dark">
-                            <thead class="text-dark text-weight-bold">
-                                <tr>
-                                    <th>
-                                        <div class="form-check form-check-muted m-0">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input">
-                                            </label>
-                                        </div>
-                                    </th>
-                                    <th> Nom du Locataire </th>
-                                    <th> Ordre </th>
-                                    <th> Numéro </th>
-                                    <th> N° CNIB </th>
-                                    <th> Mode de Paiement </th>
-                                    <th> Date de Paiement </th>
-                                    <th> Status de paiment </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check form-check-muted m-0">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/images/faces/face1.jpg" alt="image" />
-                                        <span class="pl-2">Henry Klein</span>
-                                    </td>
-                                    <td> 02312 </td>
-                                    <td> $14,500 </td>
-                                    <td> Dashboard </td>
-                                    <td> Credit card </td>
-                                    <td> 04 Dec 2019 </td>
-                                    <td>
-                                        <form action="{{route('bailleurs.destroy',$bailleur->id)}}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="badge badge-success">payé</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                    <div class="card-body my-4">
+                        <form method="POST" action=" {{ route('Money') }} " enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mb-1">
+                                <label for="locataire_id"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect2"></label>
+                                        <select class="form-control" id="exampleFormControlSelect2"
+                                            name="locataire_id" required>
+                                            <option>Locataires</option>
+                                            @foreach ($locataires as $item)
+                                                <option value="{{ $item->id }}">{{ $item->firstname }} {{ $item->lastname }}</option>
+                                            @endforeach
+                                        </select>
 
-                            </tbody>
-                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="prix"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="prix" type="number" placeholder="Somme à versé"
+                                        class="form-control @error('prix') is-invalid @enderror" name="prix"
+                                        value="{{ old('prix') }}" required autocomplete="prix">
+
+                                    @error('prix')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-">
+                                <label for="nombre"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="nombre" type="number" placeholder="Nombre de mois"
+                                        class="form-control @error('prix') is-invalid @enderror" name="nombre"
+                                        value="{{ old('nombre') }}" required autocomplete="nombre">
+
+                                    @error('nombre')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-1">
+                                <label for="mois_id"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect2"></label>
+                                        <select class="form-control" id="exampleFormControlSelect2"
+                                            name="mois_id" required>
+                                            <option>Mois</option>
+                                            @foreach ($mois as $jour)
+                                                <option value="{{ $jour->id }}"> {{ $jour->libeller }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-Success bg-success form-control fw-bolder">
+                                        {{ __('Payé') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

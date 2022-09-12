@@ -35,7 +35,7 @@
             </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href=" {{route('Paiements')}} ">
                 <span class="menu-icon">
                     <i class="mdi mdi-cash-multiple"></i>
                 </span><span>Paiements</span>

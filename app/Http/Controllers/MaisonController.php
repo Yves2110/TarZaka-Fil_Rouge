@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Modele;
 use App\Models\Maisons;
 use App\Models\Bailleurs;
+use App\Models\Locataires;
 use Illuminate\Http\Request;
 
 class MaisonController extends Controller
@@ -16,8 +17,9 @@ class MaisonController extends Controller
      */
     public function index()
     {
-        $maisons = Maisons::paginate(2);
-        return view('pages.maisons',  compact('maisons'));
+        $maisons = Maisons::paginate(4);
+        $locataire= Locataires::all();
+        return view('pages.maisons',  compact('maisons','locataire'));
     }
 
     /**

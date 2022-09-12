@@ -27,4 +27,10 @@ class Maisons extends Model
     {
         return $this->belongsTo(Modele::class);
     }
+    public function locataire()
+    {
+        return $this->belongsTo(Locataires::class);
+    }
+
+
 }

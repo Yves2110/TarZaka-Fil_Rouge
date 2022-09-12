@@ -169,15 +169,15 @@
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/blank-page.html">
+                        <a class="nav-link" href=" {{route('ListesPaiements')}} ">
                             <span class="menu-icon">
                                 <i class="mdi mdi-bell"></i>
                             </span>
-                            <span class="menu-title text-light">Notifications</span>
+                            <span class="menu-title text-light">Listes des paiements</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/error-500.html">
+                        <a class="nav-link" href="#">
                             <span class="menu-icon">
                                 <i class="mdi mdi-calendar-clock"></i>
                             </span>

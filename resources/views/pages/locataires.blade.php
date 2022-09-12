@@ -10,7 +10,7 @@
         <div class="col-12 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-dark text-uppercase">Statuts des locataires</h4>
+                    <h4 class="card-title text-dark text-uppercase">Listes des locataires</h4>
                     @if (Auth::user()->role_id === 1)
                         <a class="nav-link" href=" {{ route('Locataire_Form') }} ">
                             <span class="preview-icon float-md-right rounded-circle">
@@ -33,7 +33,7 @@
                                     <th> Ordre </th>
                                     <th> Numéro </th>
                                     <th> N° CNIB </th>
-                                    <th> Mode de Paiement </th>
+                                    <th> Maison loué </th>
                                     <th> Date de Paiement </th>
                                     <th> Status de paiment </th>
                                 </tr>
@@ -45,14 +45,14 @@
                                         <img src=" {{ asset('storage/'.$locataire->photo)}} " alt="">
                                     </td>
                                     <td>
-                                        <img src="assets/images/faces/face1.jpg" alt="image" />
-                                        <span class="pl-2">Henry Klein</span>
+                                        {{$locataire->firstname}} {{$locataire->lastname}}
                                     </td>
-                                    <td> {{$locataire->firstname}}  </td>
-                                    <td> {{$locataire->firstname}} </td>
-                                    <td> {{$locataire->firstname}} </td>
-                                    <td> {{$locataire->firstname}} </td>
-                                    <td> {{$locataire->firstname}} </td>
+                                    <td> {{$locataire->id}}  </td>
+                                    <td> {{$locataire->numero}} </td>
+                                    <td> {{$locataire->cnib}} </td>
+                                    <td> {{$locataire->house->numero_parcelle}} {{$locataire->house->localisation}} </td>
+
+                                    <td> {{$locataire->created_at}} </td>
                                     <td>
                                         <div class="badge badge-success">A jour</div>
                                         <div class="badge badge-warning">Pas à jour</div>
