@@ -18,7 +18,7 @@ class PaiementController extends Controller
      */
     public function index()
     {
-        $locataires= Paiements::all();
+        $locataires= Paiements::paginate(8);
         return view('pages.paiementsliste', compact('locataires'));
     }
 
@@ -59,7 +59,7 @@ class PaiementController extends Controller
 
         ]);
 
-        return redirect()->route('factures')->with('message', 'Enregistrement effectué avec succès!');
+        return redirect()->route('ListesPaiements')->with('message', 'Enregistrement effectué avec succès!');
     }
 
     /**

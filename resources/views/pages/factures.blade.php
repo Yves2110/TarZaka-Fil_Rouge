@@ -2,7 +2,7 @@
 @section('content')
     <div class="container  mb-5">
         <div class="header text-center fs-2 text-dark">
-            <h1 class="mb-5">Facture</h1>
+            <h1 class="mb-5"> Factures </h1>
             <h5>
                 <p class="badge-primary badge  float-left">Status :</p>
             </h5>
@@ -24,5 +24,7 @@
             <p class="float-right fw-bold">Signature</p>
 
         </div>
+        <a href=" {{route('generatePDF',['download'=>'pdf'])}} "></a>
+        <div class="btn btn-danger text-center">Imprimer</div>
     </div>
 @endsection

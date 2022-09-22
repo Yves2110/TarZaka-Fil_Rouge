@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Factures;
+use Barryvdh\DomPDF\PDF;
 use App\Models\Paiements;
 use Illuminate\Http\Request;
+// use Barryvdh\DomPDF\Facade as PDF;
+
 
 class FactureController extends Controller
 {
@@ -17,6 +20,8 @@ class FactureController extends Controller
     {
        //
     }
+
+
 
     /**
      * Show the form for creating a new resource.

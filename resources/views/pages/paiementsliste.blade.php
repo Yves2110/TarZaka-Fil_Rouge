@@ -76,6 +76,8 @@
 
                             </tbody>
                         </table>
+
+                        {{ $locataires->links() }}
                     </div>
                 </div>
             </div>

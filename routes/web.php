@@ -7,6 +7,7 @@ use App\Http\Controllers\LocataireController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MaisonController;
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +33,7 @@ Route::post('destroy', [LoginController::class, 'destroye'])->name('destroye');
 
 Route::get('locataires', [LocataireController::class, 'index'])->name('locataires');
 Route::get('AjoutLocataire', [LocataireController::class, 'create'])->name('Locataire_Form');
-Route::post('store', [LocataireController::class, 'store'])->name('Locataire_store');
+Route::post('Locataire_store', [LocataireController::class, 'store'])->name('Locataire_store');
 
 Route::get('/', function () {
     return view('welcome');
@@ -79,4 +80,6 @@ Route::get('Paiements', [PaiementController::class, 'create'])->name('Paiements'
 Route::post('store', [PaiementController::class, 'store'])->name('Money');
 Route::get('index', [PaiementController::class, 'index'])->name('ListesPaiements');
 
+//route pour les pdf
 
+Route::get('generate-pdf', [PDFController::class, 'generatePDF'])->name('generatePDF');
