@@ -38,24 +38,23 @@ class LocataireController extends Controller
     public function store(Request $request)
     {
         $request->validate( [
+            'maison_id' => 'bail|required|string|max:255',
             'firstname' => 'required|string|max:255',
             'lastname' => 'bail|required|string|max:255',
+            'cnib' => 'bail|required|string|max:255',
             'email' => 'bail|required|',
             'numero' => 'bail|required|string|max:255',
-            'cnib' => 'bail|required|string|max:255',
-            'maison_id' => 'bail|required|string|max:255',
-            'photo' => 'bail|required|image|max:2024',
+            'photo' => 'bail|required|image|',
         ]);
 
       Locataires::create([
+          "maison_id" =>$request->maison_id,
             "firstname" =>$request->firstname,
             "lastname" =>$request->lastname,
-            "adresse" =>$request->adresse,
-            "email" =>$request->email,
             "cnib" =>$request->cnib,
-            "numero" =>$request->numero,
-            "maison_id" =>$request->maison_id,
+            "email" =>$request->email,
             "photo" =>$request->photo->store('/images'),
+            "numero" =>$request->numero,
 
         ]);
 

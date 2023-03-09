@@ -9,13 +9,13 @@ class Locataires extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'maison_id',
         'firstname',
         'lastname',
         'cnib',
-        'maison_id',
+        'email',
         'photo',
         'numero',
-        'email',
     ];
     public function house()
     {
