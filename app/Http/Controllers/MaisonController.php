@@ -19,7 +19,7 @@ class MaisonController extends Controller
     {
         $maisons = Maisons::paginate(4);
         $locataire= Locataires::all();
-        return view('pages.maisons',  compact('maisons','locataire'));
+        return view('pages.maisons',compact('maisons','locataire'));
     }
 
     /**

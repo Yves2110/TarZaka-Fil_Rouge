@@ -23,9 +23,9 @@ class LoginController extends Controller
         ]);
 
        User::create([
+           "role_id" =>2,
             "firstname" =>$request->firstname,
             "lastname" =>$request->lastname,
-            "role_id" =>'2',
             "email" =>$request->email,
             "numero" =>$request->numero,
             "photo" =>$request->photo,
@@ -88,4 +88,5 @@ class LoginController extends Controller
         return redirect()->route('auth.login');
     }
 }
+
 

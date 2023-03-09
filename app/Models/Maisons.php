@@ -11,10 +11,10 @@ class Maisons extends Model
 
     protected $fillable = [
         'modele_id',
+        'bailleur_id',
         'localisation',
         'prix',
         'numero_parcelle',
-        'bailleur_id',
         'photo',
     ];
 

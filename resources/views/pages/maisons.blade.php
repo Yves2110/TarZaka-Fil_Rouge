@@ -55,11 +55,11 @@
                         </b></h4>
                 </div>
             </div>
-            @empty
+        @empty
             <center>
                 <h1 classe="text-dark">Aucun</h1>
             </center>
-            @endforelse
+        @endforelse
     </div>
     {{ $maisons->links() }}
     <!-- Modal -->
